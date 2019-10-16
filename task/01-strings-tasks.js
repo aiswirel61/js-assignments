@@ -22,8 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    let result = value1+value2;
-    return result;
+    return value1+value2;
 }
 
 
@@ -39,8 +38,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    let result = value.length;
-    return result;
+    return value.length;
 }
 
 /**
@@ -57,8 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    let result = 'Hello, '+firstName+' '+lastName+'!';
-    return result;
+    return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -72,10 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    let result = value.split(' ');
-    result.splice(0, 1);
-    result = result.join(' ').replace(/[^\w ]/, '');
-    return result;
+    return value.slice(7, -1);
 }
 
 
@@ -90,8 +84,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    let result = value[0];
-    return result;
+    return value[0];
 }
 
 /**
@@ -106,8 +99,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    let result = value.trim();
-    return result;
+    return value.trim();
 }
 
 /**
@@ -122,8 +114,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    let result = value.repeat(count);
-    return result;
+    return value.repeat(count);
 }
 
 /**
@@ -139,8 +130,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    let result =  str.replace(value, '');
-    return result;
+    return str.replace(value, '');
 }
 
 /**
@@ -155,8 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    let result = str.slice(1, -1);
-    return result;
+    return str.slice(1, -1);
 }
 
 
@@ -171,8 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    let result = str.toUpperCase();
-    return result;
+    return str.toUpperCase();
 }
 
 /**
@@ -186,8 +174,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    let result = str.split(';');
-    return result;
+    return str.split(';');
 }
 
 /**
@@ -263,11 +250,8 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */ 
 function isString(value) {
-    let result = (typeof value == 'string') ? true : false;
-    if(result == false && value != null) {
-        if(typeof value.valueOf() == 'string') result = true;
-    }
-    return result;
+    if(value != null && typeof value.valueOf() == 'string') return true;
+    return (typeof value == 'string') ? true : false;
 }
 
 
@@ -302,8 +286,7 @@ function getCardId(value) {
         'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
         'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
     ];
-    let result = cards.indexOf(value);
-    return result;
+    return cards.indexOf(value);
 }
 
 
