@@ -342,7 +342,7 @@ function getPositivesCount(arr) {
 function sortDigitNamesByNumericOrder(arr) {
    let numbers = ['zero','one','two','three','four','five','six','seven','eight','nine'];
    return arr.sort(function(a, b){
-      return numbers.indexOf(a) > numbers.indexOf(b);
+      return numbers.indexOf(a) - numbers.indexOf(b);
    });
 }
 
