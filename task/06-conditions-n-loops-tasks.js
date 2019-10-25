@@ -427,9 +427,9 @@ function timespanToHumanString(startDate, endDate) {
         else return Math.ceil(time);
     }
 
-    for (let [key, value] of map.entries()) {
-        if (interval <= key) {
-            return value;
+    for (let item of map.entries()) {
+        if (interval <= item[0]) {
+            return item[1];   
         }
     }
 
@@ -565,7 +565,7 @@ function getMatrixProduct(m1, m2) {
  */
 function evaluateTicTacToePosition(position) {
     function checkField(x1, x2, x3) {
-        return x1 == =x2 && x2 === x3 && x1 != undefined;
+        return x1 === x2 && x2 === x3 && x1 != undefined;
     }
     for (let i = 0; i < 3; i++) {
         if (checkField(position[i][0], position[i][1], position[i][2])) return position[i][0];
