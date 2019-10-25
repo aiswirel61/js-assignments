@@ -35,17 +35,17 @@
 function* get99BottlesOfBeer() {
     let i = 99;
     
-    while (i > 2) {
-        yield `${i} bottles of beer on the wall, ${i} bottles of beer.`;
-        yield `Take one down and pass it around, ${--i} bottles of beer on the wall.`;
+    let checkBottles = (i) => { 
+        return i == 1 ? `bottle`:`bottles`;
     }
 
-    yield '2 bottles of beer on the wall, 2 bottles of beer.';
-    yield 'Take one down and pass it around, 1 bottle of beer on the wall.';
-    yield '1 bottle of beer on the wall, 1 bottle of beer.';
-    yield 'Take one down and pass it around, no more bottles of beer on the wall.';
-    yield 'No more bottles of beer on the wall, no more bottles of beer.';
-    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
+    while (i > 0) {
+        yield `${i} ${checkBottles(i)} of beer on the wall, ${i} ${checkBottles(i)} of beer.`;
+        yield `Take one down and pass it around, ${--i == 0 ? `no more`: i} ${checkBottles(i)} of beer on the wall.`;
+    }
+
+    yield `No more bottles of beer on the wall, no more bottles of beer.`;
+    yield `Go to the store and buy some more, 99 bottles of beer on the wall.`;
 }
 
 
@@ -200,38 +200,21 @@ function* mergeSortedSequences(source1, source2) {
  *   Most popular implementation of the logic in npm https://www.npmjs.com/package/co
  */
 function async(generator) {
-    
     let iterator = generator();
 
-    async function run(value) {
-        let promise = iterator.next(value);
-        console.log(promise)
-        if(promise.done) return promise.value;
-        return promise.value.then(run);
-    }
-    
-    return run();
+    function handle(result){
+        if(result.done) return Promise.resolve(result.value);
 
-    /* async function* asyncGenerator(val) {
-        const iterator = generator();
-        while (true) {
-            const {done, value} = await iterator.next();
-            if(done) return value;
-            
-        }
+        return Promise.resolve(result.value).then((res) => {
+            return handle(iterator.next(res));
+        });
     }
 
-    const run = async () => {
-        for await (const num of asyncGenerator()) {
-            console.log(num)
-        }
+    try {
+        return handle(iterator.next())
+    } catch (error) {
+        return Promise.reject(error)
     }
-    
-    const result = run().then((value) => {
-        return value;
-    });
-
-    return result; */
 }
 
 
